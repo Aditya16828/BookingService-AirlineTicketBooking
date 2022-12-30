@@ -1,26 +1,69 @@
-const {StatusCodes} = require('http-status-codes');
+const { StatusCodes } = require("http-status-codes");
 
-const { ValidationError, AppError } = require('../services/index');
-const {Booking} = require('../models/index');
+// const { ValidationError, AppError } = require("../services/index");
+const { Booking, BookedFlight } = require("../models/index");
 
-class BookingRepository{
-    async create(data){
+class BookingRepository {
+    async findFlight(flightId, bookingDate) {
         try {
-            const booking = await Booking.create(data);
+            const response = await BookedFlight.findOne({
+                where: { flightId: flightId, flightDate: bookingDate },
+            });
+            return response;
+        } catch (error) {}
+    }
+
+    async createBooking(data) {
+        try {
+            const booking = await Booking.create({
+                flightId: data.flightId,
+                userId: data.userId,
+                status: "Booked",
+                noOfSeats: data.noOfSeats,
+                totalCost: data.totalCost,
+                bookingDate: data.bookingDate,
+            });
             return booking;
         } catch (error) {
-            if(error.name == 'SequelizeValidationError'){
-                throw new ValidationError(error);
-            }
-            throw new AppError(
-                'RepositoryError',
-                'Connot Create Booking',
-                'Some error occurred while creating booking.',
-                StatusCodes.INTERNAL_SERVER_ERROR
-            );
+            // if (error.name == "SequelizeValidationError") {
+            //     throw new ValidationError(error);
+            // }
+            throw {error};
         }
+    }
+
+    async updateBooking(data) {
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
+
+    async createFlightDetails(data) {
+        try {
+            const flight = await BookedFlight.create(data);
+            return true;
+        } catch (error) {
+            
+        }
+    }
+
+    async updateFlightDetails(data) {
+        try {
+            const flight = await this.findFlight(
+                data.flightId,
+                data.flightDate
+            );
+            if (!flight) {
+                await this.createFlightDetails(data);
+            } else {
+                flight.seatsAvailable = data.seatsAvailable;
+                flight.save();
+            }
+            return true;
+        } catch (error) {}
     }
 }
 
 module.exports = BookingRepository;
-
