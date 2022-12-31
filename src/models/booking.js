@@ -37,6 +37,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
       defaultValue: 0
+    },
+    bookingDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date()
     }
   }, {
     sequelize,
