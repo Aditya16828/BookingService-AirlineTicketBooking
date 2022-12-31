@@ -13,6 +13,15 @@ class BookingRepository {
         } catch (error) {}
     }
 
+    async getBooking(bookingId){
+        try {
+            const booking = await Booking.findByPk(bookingId);
+            return booking;
+        } catch (error) {
+            throw {error};
+        }
+    }
+
     async createBooking(data) {
         try {
             const booking = await Booking.create({
@@ -32,9 +41,15 @@ class BookingRepository {
         }
     }
 
-    async updateBooking(data) {
+    async updateBooking(data, bookingId) {
         try {
-            
+            await Booking.update(data, {
+                where:{
+                    id: bookingId
+                }
+            })
+
+            return true;
         } catch (error) {
             
         }
