@@ -5,6 +5,8 @@ const {PORT} = require('./config/serverConfig.js');
 const v1ApiRoutes = require('./routes/index');
 const db = require('./models/index');
 
+const {ScheduledFlightService} = require('./services/index');
+
 const setupandrunserver = async function (){
     const app = express();
 

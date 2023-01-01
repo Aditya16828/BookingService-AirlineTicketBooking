@@ -1,11 +1,11 @@
 const express =require('express');
 const { Model } = require('sequelize');
 
-const {BookingController} = require('../../controllers/index');
+const {ScheduledFlightController} = require('../../controllers/index');
 
 const router = express.Router();
 
-router.post('/booking', BookingController.createBooking);
+// router.post('/booking', BookingController.createBooking);
 /*
 Request of form: 
     {
@@ -15,7 +15,7 @@ Request of form:
         bookingDate:
     }
 */
-router.post('/updateBooking/:id', BookingController.updateBooking);
+// router.post('/updateBooking/:id', BookingController.updateBooking);
 /*
 Request of form: 
     {
@@ -23,5 +23,10 @@ Request of form:
         bookingDate: (optional)
     }
 */
+
+router.post('/scheduleFlight', ScheduledFlightController.createScheduledFlight);
+router.patch('/scheduleFlight/:id', ScheduledFlightController.updateScheduledFlight);
+router.delete('/scheduleFlight/:id', ScheduledFlightController.removeScheduledFlight);
+router.get('/scheduleFlight/:id', ScheduledFlightController.getScheduledFlight);
 
 module.exports = router;

@@ -1,83 +1,48 @@
-const { StatusCodes } = require("http-status-codes");
-
-// const { ValidationError, AppError } = require("../services/index");
-const { Booking, BookedFlight } = require("../models/index");
+const {Booking} = require('../models/index');
 
 class BookingRepository {
-    async findFlight(flightId, bookingDate) {
+    async createBooking(data){
         try {
-            const response = await BookedFlight.findOne({
-                where: { flightId: flightId, flightDate: bookingDate },
-            });
-            return response;
-        } catch (error) {}
-    }
-
-    async getBooking(bookingId){
-        try {
-            const booking = await Booking.findByPk(bookingId);
+            const booking = await Booking.create(data);
             return booking;
         } catch (error) {
+            console.log("Error in deleting booking");
+            console.log(error);
             throw {error};
         }
     }
 
-    async createBooking(data) {
+    async getBooking(id){
         try {
-            const booking = await Booking.create({
-                flightId: data.flightId,
-                userId: data.userId,
-                status: "Booked",
-                noOfSeats: data.noOfSeats,
-                totalCost: data.totalCost,
-                bookingDate: data.bookingDate,
-            });
+            const booking = await Booking.findByPk(id);
             return booking;
         } catch (error) {
-            // if (error.name == "SequelizeValidationError") {
-            //     throw new ValidationError(error);
-            // }
+            console.log("Error in deleting booking");
+            console.log(error);
             throw {error};
         }
     }
 
-    async updateBooking(data, bookingId) {
+    async updateBooking(data, id){
         try {
-            await Booking.update(data, {
-                where:{
-                    id: bookingId
-                }
-            })
-
+            await Booking.update(data, {where: {id: id}});
             return true;
         } catch (error) {
-            
+            console.log("Error in deleting booking");
+            console.log(error);
+            throw {error};
         }
     }
 
-    async createFlightDetails(data) {
+    async removeBooking(id){
         try {
-            const flight = await BookedFlight.create(data);
+            await Booking.destroy({where:{id: id}});
             return true;
         } catch (error) {
-            
+            console.log("Error in deleting booking");
+            console.log(error);
+            throw {error};
         }
-    }
-
-    async updateFlightDetails(data) {
-        try {
-            const flight = await this.findFlight(
-                data.flightId,
-                data.flightDate
-            );
-            if (!flight) {
-                await this.createFlightDetails(data);
-            } else {
-                flight.seatsAvailable = data.seatsAvailable;
-                flight.save();
-            }
-            return true;
-        } catch (error) {}
     }
 }
 
