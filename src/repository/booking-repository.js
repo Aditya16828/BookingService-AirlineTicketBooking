@@ -6,7 +6,7 @@ class BookingRepository {
             const booking = await Booking.create(data);
             return booking;
         } catch (error) {
-            console.log("Error in deleting booking");
+            console.log("Error in deleting booking repository level");
             console.log(error);
             throw {error};
         }
@@ -17,7 +17,7 @@ class BookingRepository {
             const booking = await Booking.findByPk(id);
             return booking;
         } catch (error) {
-            console.log("Error in deleting booking");
+            console.log("Error in deleting booking repository level");
             console.log(error);
             throw {error};
         }
@@ -28,7 +28,7 @@ class BookingRepository {
             await Booking.update(data, {where: {id: id}});
             return true;
         } catch (error) {
-            console.log("Error in deleting booking");
+            console.log("Error in deleting booking repository level");
             console.log(error);
             throw {error};
         }
@@ -39,7 +39,7 @@ class BookingRepository {
             await Booking.destroy({where:{id: id}});
             return true;
         } catch (error) {
-            console.log("Error in deleting booking");
+            console.log("Error in deleting booking repository level");
             console.log(error);
             throw {error};
         }
