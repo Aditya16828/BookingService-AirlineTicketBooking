@@ -1,31 +1,48 @@
-# BOOKING SERVICE FOR AIRLINE BOOKING SYSTEM
+# BOOKING-SERVICE DOCUMENTATION
 
-## Basic Server Setup Steps
+This micro-service mainly focusses on the booking of the flight tickets from the scheduled flights between various locations.
 
-- Create the folder `./src/` inside which create the following folder:
-  - `config`
-  - `controllers`
+The features are:
+
+- Booking a flight
+- Cancelling a flight
+- Updating a booked flight number of seats
+- Fetch a booked flight
+
+(For admins only)
+
+- Scheduling a Flight
+- Update details of a scheduled flight
+- remove/delete a scheduled flight
+- fetch a scheduled flight
+
+## DB DESIGNS
+
+- Tables Required:
+  - Bookings
+  - ScheduledFlights
+
+- Design of Tables:
+  - **Bookings Table _(or Booking Model)_**
+    - id (created by sequelize automatically)
+    - schFlightId
+    - userId
+    - status
+    - noOfSeats
+    - totalCost
+    - createdAt (created by sequelize automatically)
+    - updatedAt (created by sequelize automatically)
+  - **ScheduledFlights _(or ScheduledFlight Model)_**
+    - id (created by sequelize automatically)
+    - flightId
+    - flightDate
+    - price
+    - seatsAvailable
+    - flightStatus
+    - createdAt (created by sequelize automatically)
+    - updatedAt (created by sequelize automatically)
+
+![DB Design image](/docImages/DB_Designs.jpeg)
 
 ---
 
-## DB Setup
-
-- **DB Structure**
-
-  - flighId -> {integer, NOT NULL}
-  - userId -> {integer, NOT NULL}
-  - status -> {ENUM, NOT NULL, values: ['Processing', 'Booked', 'Cancelled'], defaultValue: 'Processing'}
-
-  - Run the command `npx sequelize model:generate --name Booking --attributes flightId:integer,userId:integer,status:ENUM` to create the ==Database Booking==.
-  - Make the required changes to the models and migrations folder.
-  - Run the command `npx sequelize db:migrate` to apply the migrations.
-
-## Repository Layer
-
-- In the file `booking-repository.js`
-
-  - `create(data)` -> Create a booking
-
-### Create a new migration
-
-- `npx sequelize migration:create --name modify_bookings_add_new_fields`
