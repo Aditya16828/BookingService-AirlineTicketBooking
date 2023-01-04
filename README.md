@@ -45,4 +45,3 @@ The features are:
 ![DB Design image](/docImages/DB_Designs.jpeg)
 
 ---
-
