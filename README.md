@@ -52,45 +52,67 @@ As mentioned above, there are 2 types of APIs exposed for the user, which is dis
 
 ### For Customers
 
-- For Booking Flight
+- **For Booking Flight:**  
+Url = <http://localhost:3003/api/v1/booking>
+Request format (post, sent in body) (json):
 
-- For updating a Booked Flight
+```json
+{
+  "schFlightId":"<INTEGER_SCHEDULED-FLIGHTID>",
+  "userId": "<INTEGER_USERID>",
+  "noOfSeats": "<POSITIVE_INTEGER>"
+}
+```
 
-- For cancelling a Booking
+- **For updating a Booked Flight:**  
+URL = <http://localhost:3003/api/v1/booking/:id>
+Request format (patch, sent in body and request params) (json):
 
-- To get details for a Booking
+```json
+{
+  "noOfSeats": "<POSITIVE_INTEGER>"
+}
+```
+
+- **For cancelling a Booking:**  
+URL = <http://localhost:3003/api/v1/booking/:id>
+Request format (delete, sent in request params)
+
+- **To get details for a Booking:**  
+URL = <http://localhost:3003/api/v1/booking/:id>
+Request format (get, sent in request params)
 
 ### For Admins
 
-- **For scheduling a FLight:**
- Url = <http://localhost:3003/api/v1/scheduleFlight>  
- Request format (post, sent in body) (json):
+- **For scheduling a Flight:**
+Url = <http://localhost:3003/api/v1/scheduleFlight>  
+Request format (post, sent in body) (json):
 
- ```json
- {
- "flightId":<INTEGER_FLIGHTID>,
- "flightDate": <FLIGHTDATE_AND_TIME>,
- "flightStatus": "<Confirmed, ToBeConfirmed, Cancelled>" (optional)
- }
- ```
+```json
+{
+  "flightId": "<INTEGER_FLIGHTID>",
+  "flightDate": "<FLIGHTDATE_AND_TIME>",
+  "flightStatus": "<Confirmed, ToBeConfirmed, Cancelled>" (optional)
+}
+```
 
 - **To update an already scheduled Flight:**
- Url = <http://localhost:3003/api/v1/scheduleFlight/:id>  
- Request format (patch, sent in body and request params) (json):
+Url = <http://localhost:3003/api/v1/scheduleFlight/:id>  
+Request format (patch, sent in body and request params) (json):
 
- ```json
- {
- "flightId":<INTEGER_FLIGHTID>,
- "flightDate": <FLIGHTDATE_AND_TIME>,
- "flightStatus": "<Confirmed, ToBeConfirmed, Cancelled>",
- "seatsAvailable": <NON-NEGATIVE_INTEGER>
+```json
+{
+  "flightId": "<INTEGER_FLIGHTID>",
+  "flightDate": "<FLIGHTDATE_AND_TIME>",
+  "flightStatus": "<Confirmed, ToBeConfirmed, Cancelled>",
+  "seatsAvailable": "<NON-NEGATIVE_INTEGER>"
 }
- ```
+```
 
 - **To delete a schduled Flight:**
- Url = <http://localhost:3003/api/v1/scheduleFlight/:id>  
- Request format (delete, sent in request params)
+Url = <http://localhost:3003/api/v1/scheduleFlight/:id>  
+Request format (delete, sent in request params)
 
 - **To fetch details about a scheduled Flight:**
- Url = <http://localhost:3003/api/v1/scheduleFlight/:id>  
- Request format (get, sent in request params)
+Url = <http://localhost:3003/api/v1/scheduleFlight/:id>  
+Request format (get, sent in request params)
