@@ -62,7 +62,7 @@ As mentioned above, there are 2 types of APIs exposed for the user, which is dis
 
 - _For Admins_
 
-  - For scheduling a FLight  
+  - **For scheduling a FLight:**
  Url = <http://localhost:3003/api/v1/scheduleFlight>
  Request format (post, sent in body) (json):
 
@@ -74,21 +74,21 @@ As mentioned above, there are 2 types of APIs exposed for the user, which is dis
  }
  ```
 
-- To update an already scheduled Flight
+- **To update an already scheduled Flight:**
  Url = <http://localhost:3003/api/v1/scheduleFlight>
  Request format (patch, sent in body) (json):
 
  ```json
  ```
 
-- To delete a schduled Flight
+- **To delete a schduled Flight:**
  Url = <http://localhost:3003/api/v1/scheduleFlight>
  Request format (delete, sent in body) (json):
 
  ```json
  ```
 
-- To fetch details about a scheduled Flight
+- **To fetch details about a scheduled Flight:**
  Url = <http://localhost:3003/api/v1/scheduleFlight>
  Request format (patch, sent in body) (json):
 
