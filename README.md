@@ -75,8 +75,8 @@ As mentioned above, there are 2 types of APIs exposed for the user, which is dis
  ```
 
 - **To update an already scheduled Flight:**
- Url = <http://localhost:3003/api/v1/scheduleFlight>  
- Request format (patch, sent in body) (json):
+ Url = <http://localhost:3003/api/v1/scheduleFlight/:id>  
+ Request format (patch, sent in body and request params) (json):
 
  ```json
  {
