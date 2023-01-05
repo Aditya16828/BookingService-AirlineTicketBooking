@@ -45,3 +45,52 @@ The features are:
 ![DB Design image](/docImages/DB_Designs.jpeg)
 
 ---
+
+## APIs exposed and its corresponding URLS
+
+As mentioned above, there are 2 types of APIs exposed for the user, which is distributed **as per role of the user**.
+
+- _For Customers_
+
+  - For Booking Flight
+
+  - For updating a Booked Flight
+
+  - For cancelling a Booking
+
+  - To get details for a Booking
+
+- _For Admins_
+
+  - For scheduling a FLight  
+ Url = <http://localhost:3003/api/v1/scheduleFlight>
+ Request format (post, sent in body) (json):
+
+ ```json
+ {
+ "flightId":<INTEGER_FLIGHTID>,
+ "flightDate": <FLIGHTDATE_AND_TIME>,
+ "flightStatus": "<Confirmed, ToBeConfirmed, Cancelled>"
+ }
+ ```
+
+- To update an already scheduled Flight
+ Url = <http://localhost:3003/api/v1/scheduleFlight>
+ Request format (patch, sent in body) (json):
+
+ ```json
+ ```
+
+- To delete a schduled Flight
+ Url = <http://localhost:3003/api/v1/scheduleFlight>
+ Request format (delete, sent in body) (json):
+
+ ```json
+ ```
+
+- To fetch details about a scheduled Flight
+ Url = <http://localhost:3003/api/v1/scheduleFlight>
+ Request format (patch, sent in body) (json):
+
+ ```json
+ ```
