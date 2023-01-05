@@ -53,17 +53,28 @@ class ScheduledFlightService {
 
     async updateScheduledFlight(data, id){
         try {
-            let flightDetails;
+            /*
+            data:
+            {
+                flightId(optional), flightDate, seatsAvailable, flightStatus
+            }
+            */
             if(data.flightId){
                 const flightRqstURL = `http://localhost:${FLIGHT_REQUEST_PORT}/api/v1/flights/${data.flightId}`;
-                flightDetails = (await axios.get(flightRqstURL)).data.data;
-                data = {...data, price: flightDetails.price, seatsAvailable: flightDetails.availableSeats};
+                const flightDetails = (await axios.get(flightRqstURL)).data.data;
+                const flightRqstURLprev = `http://localhost:${FLIGHT_REQUEST_PORT}/api/v1/flights/${(await this.getScheduledFlight(id)).flightId}`;
+                const flightDetailsprev = (await axios.get(flightRqstURLprev)).data.data;
+                data = {...data,
+                    price: flightDetails.price,
+                    seatsAvailable: flightDetails.availableSeats - (flightDetailsprev.availableSeats - (await this.getScheduledFlight(id)).seatsAvailable)
+                };
             }
             const response = await this.schflightrepo.updateScheduledFlight(data, id);
             return response;
         } catch (error) {
             console.log("Error in scheduling a flight (service level)");
-            throw {error};
+            console.log(error)
+            throw error;
         }
     }
 }

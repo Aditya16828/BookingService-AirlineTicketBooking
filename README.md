@@ -70,7 +70,7 @@ As mentioned above, there are 2 types of APIs exposed for the user, which is dis
  {
  "flightId":<INTEGER_FLIGHTID>,
  "flightDate": <FLIGHTDATE_AND_TIME>,
- "flightStatus": "<Confirmed, ToBeConfirmed, Cancelled>"
+ "flightStatus": "<Confirmed, ToBeConfirmed, Cancelled>" (optional)
  }
  ```
 
@@ -79,18 +79,18 @@ As mentioned above, there are 2 types of APIs exposed for the user, which is dis
  Request format (patch, sent in body) (json):
 
  ```json
+ {
+ "flightId":<INTEGER_FLIGHTID>,
+ "flightDate": <FLIGHTDATE_AND_TIME>,
+ "flightStatus": "<Confirmed, ToBeConfirmed, Cancelled>",
+ "seatsAvailable": <NON-NEGATIVE_INTEGER>
+}
  ```
 
 - **To delete a schduled Flight:**
- Url = <http://localhost:3003/api/v1/scheduleFlight>  
- Request format (delete, sent in body) (json):
-
- ```json
- ```
+ Url = <http://localhost:3003/api/v1/scheduleFlight/:id>  
+ Request format (delete, sent in request params)
 
 - **To fetch details about a scheduled Flight:**
- Url = <http://localhost:3003/api/v1/scheduleFlight>  
- Request format (patch, sent in body) (json):
-
- ```json
- ```
+ Url = <http://localhost:3003/api/v1/scheduleFlight/:id>  
+ Request format (get, sent in request params)
