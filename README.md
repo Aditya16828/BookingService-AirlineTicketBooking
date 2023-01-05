@@ -50,19 +50,19 @@ The features are:
 
 As mentioned above, there are 2 types of APIs exposed for the user, which is distributed **as per role of the user**.
 
-- _For Customers_
+### For Customers
 
-  - For Booking Flight
+- For Booking Flight
 
-  - For updating a Booked Flight
+- For updating a Booked Flight
 
-  - For cancelling a Booking
+- For cancelling a Booking
 
-  - To get details for a Booking
+- To get details for a Booking
 
-- _For Admins_
+### For Admins
 
-  - **For scheduling a FLight:**
+- **For scheduling a FLight:**
  Url = <http://localhost:3003/api/v1/scheduleFlight>
  Request format (post, sent in body) (json):
 
