@@ -82,7 +82,7 @@ Request format (delete, sent in request params)
 URL = <http://localhost:3003/api/v1/booking/:id>
 Request format (get, sent in request params)
 
-<hr style="border:0.5px solid blue">
+#
 
 ### For Admins
 
