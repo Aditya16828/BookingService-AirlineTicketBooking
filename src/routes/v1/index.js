@@ -1,25 +1,16 @@
 const express =require('express');
 
 const {ScheduledFlightController, BookingController} = require('../../controllers/index');
+const {CHANNEL} = require('../../config/channelConfig');
 
 const router = express.Router();
+const bookingController = new BookingController(CHANNEL);
 
-router.post('/booking', BookingController.createBooking);
-/*
-Request of form: 
-            {
-                schFlightId, userId, noOfSeats
-            }
-*/
-router.patch('/booking/:id', BookingController.updateBooking);
-/*
-Request of form: 
-    {
-        noOfSeats
-    }
-*/
-router.delete('/booking/:id', BookingController.removeBooking);
-router.get('/booking/:id', BookingController.getBooking);
+router.post('/booking', bookingController.createBooking);
+router.patch('/booking/:id', bookingController.updateBooking);
+router.delete('/booking/:id', bookingController.removeBooking);
+router.get('/booking/:id', bookingController.getBooking);
+// router.post('/publish', bookingController.sendMsgToQueue);
 
 router.post('/scheduleFlight', ScheduledFlightController.createScheduledFlight);
 router.patch('/scheduleFlight/:id', ScheduledFlightController.updateScheduledFlight);
