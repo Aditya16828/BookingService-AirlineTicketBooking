@@ -1,20 +1,21 @@
 const { BookingRepository } = require("../repository/index");
 const {createChannel, publishMessage} = require('../utils/messageQueues');
 const {BINDING_KEY, USER_REQUEST_PORT} = require('../config/serverConfig');
+const {CHANNEL} = require('../config/channelConfig');
 const ScheduledFlightService = require("./scheduledFlight-service");
 
 const axios = require("axios");
 
 class BookingService {
-    constructor(channel) {
-        this.channel = channel;
+    constructor() {
         this.bookingrepo = new BookingRepository();
         this.sfs = new ScheduledFlightService();
     }
 
     async #sendMsgToQueue(message) {
         try {
-            await publishMessage(this.channel, BINDING_KEY, message);
+            const channel = await CHANNEL;
+            await publishMessage(channel, BINDING_KEY, message);
             return {alert: "Mail sent Successfully"};
         } catch (error) {
             error = {...error, alert: "Unable to send mail"};
@@ -73,6 +74,7 @@ class BookingService {
                 const response = await this.#sendMsgToQueue(toQ);
 
                 booking = {...booking, response};
+                // console.log(await CHANNEL);
 
                 return booking;
             } else {

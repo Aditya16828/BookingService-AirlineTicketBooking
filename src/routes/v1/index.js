@@ -1,10 +1,9 @@
 const express =require('express');
 
 const {ScheduledFlightController, BookingController} = require('../../controllers/index');
-const {CHANNEL} = require('../../config/channelConfig');
 
 const router = express.Router();
-const bookingController = new BookingController(CHANNEL);
+const bookingController = new BookingController();
 
 router.post('/booking', bookingController.createBooking);
 router.patch('/booking/:id', bookingController.updateBooking);

@@ -4,6 +4,7 @@ const bodyparser = require('body-parser');
 const {PORT} = require('./config/serverConfig.js');
 const v1ApiRoutes = require('./routes/index');
 const db = require('./models/index');
+// const {createChannel} = require('./utils/messageQueues');
 
 const {ScheduledFlightService} = require('./services/index');
 

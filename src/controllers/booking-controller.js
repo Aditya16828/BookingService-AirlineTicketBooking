@@ -3,8 +3,8 @@ const {BookingService} = require('../services/index')
 // const {BINDING_KEY} = require('../config/serverConfig');
 
 class BookingController{
-    constructor(channel){
-        this.bs = new BookingService(channel);
+    constructor(){
+        this.bs = new BookingService();
     }
 
     createBooking = async (req, res) => {
